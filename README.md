@@ -1,1 +1,1 @@
-fuck world
+fullow world
