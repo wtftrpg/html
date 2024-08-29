@@ -1,0 +1,72 @@
+<html>
+    <head>
+        <script>
+            var pics_src = new Array("./jk001.jpg","./jk002.jpg","./jk003.jpg");
+
+            var num = 0;
+
+            var flag = true;
+
+            var index = 0;
+
+            function jyanken(){
+                if(!flag){
+                    return;
+                }
+                index = num % pics_src.length;
+                var e = document.getElementById("mypic");
+                e.src=pics_src[index];
+                num++;
+                setTimeout("jyanken()",10);
+            }
+            
+            function start(){
+                var rsDisplay =document.getElementById("rs");
+                rsDisplay.innerText="";
+                flag=true;
+                var start =document.getElementById("start")
+                start.disabled=true;
+                jyanken();
+
+            }
+
+            function stop(){
+                flag=false;
+                var start =document.getElementById("start")
+                start.disabled=false;
+                var selectElm = document.getElementById("sel");
+                var myselect = selectElm.value;
+                var pcselect =index;
+                var rsDisplay =document.getElementById("rs");
+
+                if(myselect==0 && pcselect==2){
+                    rsDisplay.innerText="勝!";
+                }else if(myselect==1 && pcselect==0){
+                    rsDisplay.innerText="勝!";
+                }else if(myselect==2 && pcselect==1){
+                    rsDisplay.innerText="勝!";
+                }else if(myselect==pcselect){
+                    rsDisplay.innerText="お相子!";
+                }else{
+                    rsDisplay.innerText="負!";
+                }
+            }   
+            
+
+        </script>
+    </head>
+    <body>
+        <select id="sel">
+            <option value="0">剪刀</option>
+            <option value="1">石頭</option>
+            <option value="2">布</option>
+        </select>
+        <br>
+        <button id="start" onclick="start()">開始</button>
+        <button id="stop" onclick="stop()">停止</button>
+        <br>
+        <img id="mypic" src="./jk001.jpg"  width="300" height="350">
+        <br>
+        <font id="rs" style="font-size:50px;color:red;"></font>
+    </body>
+</html>
