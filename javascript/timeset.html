@@ -1,0 +1,48 @@
+<html>
+    <head>
+        <script>
+            var pics_src = new Array("./windy.jpg","./fujii001.jpg","./fujii002.jpg","./fujii003.jpg");
+
+            var num = 0;
+
+            var flag = true;
+
+            function slideshow(){
+
+                if(!flag){
+                    return;
+                }
+                var index = num % pics_src.length;
+                var e = document.getElementById("mypic");
+                e.src=pics_src[index];
+                num++;
+                setTimeout("slideshow()",10);
+            }
+            function start(){
+
+                flag=true;
+                var start =document.getElementById("start")
+                start.disabled=true;
+                slideshow();
+
+            }
+
+            function stop(){
+                flag=false;
+                var start =document.getElementById("start")
+                start.disabled=false;
+            }   
+            window.onload=function(){   
+
+                start();
+                    }
+
+        </script>
+    </head>
+    <body>
+        <button id="start" onclick="start()">開始</button>
+        <button id="stop" onclick="stop()">停止</button>
+        <br>
+        <img id="mypic" src="" alt="Picture" width="300" height="350">
+    </body>
+</html>
